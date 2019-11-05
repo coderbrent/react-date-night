@@ -1,6 +1,3 @@
-# react-date-night
-Date Night
-
 ## What is Date Night?
 
 Date Night is a web application that allows a user to create an itinerary for a night out without having to visit multiple websites.
