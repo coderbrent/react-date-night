@@ -5,8 +5,8 @@ import { ApolloProvider } from '@apollo/react-hooks'
 
 function App() {
 
-  const API_KEY = `RDTY2s5wHoE63oNa-ZkDcNbQoZ-m_UxR35hCAeyQCauZNIPLkK83f7IBgEF22JmNW2N8p-kKczn5IVv7EbjSGjebLqySqizfQNdFERLiKw1OHmfjpZzMoFnRkJy_XXYx`
-
+  const API_KEY = process.env.REACT_APP_API_KEY
+  
   const client = new ApolloClient({
     uri: `https://api.yelp.com/v3/graphql`,
     fetchOptions: {
