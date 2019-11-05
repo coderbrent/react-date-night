@@ -19,7 +19,7 @@ app.use('/__graphiql', graphqlHTTP({
 }));
 
 app.get('/', (req, res) => {
-  res.send("yeah whatup dis da serva")
+  res.send("a traditional express route")
 })
 
-app.listen(port, () => console.log(`We're running full speed on port ${port}`));
+app.listen(port, () => console.log(`Server is running @ port: ${port}`));
