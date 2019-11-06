@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import lpStyles from '../landing/LandingPage.module.css'
 import AuthBox from '../../components/auth-box/AuthBox'
-import QuestionBox from '../../components/questionnaire-box/QuestionBox';
-import ResultBox from '../../components/results-box/ResultBox'
+// import QuestionBox from '../../components/questionnaire-box/QuestionBox';
+// import ResultBox from '../../components/results-box/ResultBox'
 
 const LandingPage = (props) => {
-  const [isloggedIn, setIsLoggedIn] = useState({isloggedIn: false})
   const [userLocation, setUserLocation] = useState({ lat: null, lng: null})
 
   useEffect(() => {
@@ -32,12 +31,12 @@ const LandingPage = (props) => {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-    
+    console.log(userLocation)
   }, [])
 
   return (
     <div className={lpStyles.container}>
-      <ResultBox />
+      <AuthBox />
     </div>
   )
 }
