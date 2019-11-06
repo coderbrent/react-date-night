@@ -4,7 +4,7 @@ import AuthBox from '../../components/auth-box/AuthBox'
 import QuestionBox from '../../components/questionnaire-box/QuestionBox';
 import ResultBox from '../../components/results-box/ResultBox'
 
-const LandingPage = () => {
+const LandingPage = (props) => {
   const [isloggedIn, setIsLoggedIn] = useState({isloggedIn: false})
   const [userLocation, setUserLocation] = useState({ lat: null, lng: null})
 
