@@ -1,29 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import rbStyles from '../results-box/ResultBox.module.css'
-import { gql } from 'apollo-boost'
-import { useQuery } from '@apollo/react-hooks'
 import Spinner from 'react-spinkit'
 
-
 const ResultBox = () => {
-  
-  const bizQuery = gql`
-      {
-        business(id: "garaje-san-francisco") {
-          name
-          id
-          rating
-          url
-      }
-   }
-  `
-  const { loading, error, data } = useQuery(bizQuery);
+  const [data, setData] = useState({})
+  const [dataToggle, setDataToggle] = useState(false)
 
+  const foodType = "mexican"
+
+  const toggle = () => {
+    setDataToggle(true);
+  }
+
+  useEffect(() => {
+    fetch(`/yelp/restaurants/${foodType}/40.3135221/-74.28575529999999`)
+      .then(response => response.json())
+      .then(results => setData(results))
+  }, [])
+  
   return (
     <>
+<button onClick={()=> toggle()}></button>
     <div className={rbStyles.box}>
-      { loading ? <Spinner name='wave' color='purple' /> : data }
-      { error ? console.log(error) : null }
+      { dataToggle ? data.businesses.map((el, i) => (
+        <div 
+          key={i}
+        > { el.alias } 
+        </div>
+       )) : null }
     </div>
     </>
   )

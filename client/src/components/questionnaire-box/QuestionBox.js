@@ -62,7 +62,6 @@ const QuestionBox = ({ userLocation }) => {
         className={ address ? qbStyles.submitButton : qbStyles.disabledButton }>
         Next
       </button>
-      <button onClick={ ()=> { console.log(userLocation) } }> hey</button>
     </div>
     </>
   )
