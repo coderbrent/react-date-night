@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import rbStyles from '../results-box/ResultBox.module.css'
-import Spinner from 'react-spinkit'
 
 const ResultBox = () => {
   const [data, setData] = useState({})

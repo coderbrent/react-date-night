@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import LandingPage from './pages/landing/LandingPage'
+import AuthPage from './pages/auth/AuthPage'
+import MainPage from './pages/main/MainPage'
 import AuthHelpers from '../src/components/auth/AuthHelpers'
-import { Redirect } from 'react-router-dom'
-import QuestionBox from './components/questionnaire-box/QuestionBox'
+import LoginBox from '../src/components/auth/login-box/LoginBox'
+import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
@@ -25,7 +26,16 @@ const App = () => {
 
   return (
    <>
-    { Auth.loggedIn() ? <QuestionBox /> : <LandingPage /> }
+   <Router>
+    <Switch>
+      <Route path="/login">
+        <AuthPage component={LoginBox} />
+      </Route>
+      <Route path="/main">
+        <MainPage />
+      </Route>
+    </Switch>
+   </Router>
    </>
   )
 }

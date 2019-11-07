@@ -62,12 +62,21 @@ const LoginBox = () => {
         >
           log in
         </button>
-        <button 
-          onClick={toggleBox} 
-          className={abStyles.signupButton}
-        >
-          sign up
-        </button>
+        <div
+         style={{
+           margin: '.75em'
+         }}>
+          <small>Don't have an account yet? 
+            <button style={{ 
+              background: 'transparent', 
+              border: 0,
+            }}
+              onClick={toggleBox}
+            >
+              Sign up here.
+            </button>
+          </small>
+        </div>
       </div> : <SignUpBox /> }
     </>
   ) 

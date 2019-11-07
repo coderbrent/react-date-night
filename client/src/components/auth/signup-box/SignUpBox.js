@@ -3,6 +3,7 @@ import abStyles from '../AuthBox.module.css'
 import AuthHelpers from '../AuthHelpers'
 import LoginBox from '../login-box/LoginBox'
 import axios from 'axios'
+import ReactSVG from 'react-svg'
 
 const SignUpBox = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -50,6 +51,7 @@ return (
     <div className={abStyles.box}>
       <div className={abStyles.header}>
         Sign Up Here
+        <ReactSVG src="../../../icons/back-arrow.svg" />
       </div>
       <div className={abStyles.row}>
         <label>
