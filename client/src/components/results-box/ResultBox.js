@@ -13,22 +13,25 @@ const ResultBox = () => {
   }
 
   useEffect(() => {
-    fetch(`/yelp/restaurants/${foodType}/40.3135221/-74.28575529999999`)
+    fetch(`/yelp/restaurants/${foodType}/40.3134695/-74.2857994`)
       .then(response => response.json())
-      .then(results => setData(results))
+      .then(results => { 
+        setData(results) 
+        console.log(results)
+      })
   }, [])
   
   return (
     <>
-<button onClick={()=> toggle()}></button>
-    <div className={rbStyles.box}>
-      { dataToggle ? data.businesses.map((el, i) => (
-        <div 
-          key={i}
-        > { el.alias } 
-        </div>
-       )) : null }
-    </div>
+    <button onClick={()=> toggle()}></button>
+      <div className={rbStyles.box}>
+        { dataToggle ? data.businesses.map((el, i) => (
+          <div
+            key={i}
+          > { el.alias } 
+          </div>
+        )) : null }
+      </div>
     </>
   )
 }

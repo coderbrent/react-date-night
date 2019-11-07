@@ -6,7 +6,6 @@ import ResultBox from '../../components/results-box/ResultBox'
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 
 const LandingPage = (props) => {
-  const [isloggedIn, setIsLoggedIn] = useState({isloggedIn: false})
   const [userLocation, setUserLocation] = useState({ lat: null, lng: null})
 
   useEffect(() => {
@@ -53,6 +52,8 @@ const LandingPage = (props) => {
         </Route>
       </Switch>
     </Router>
+    console.log(userLocation)
+  }, [])
   )
 }
 
