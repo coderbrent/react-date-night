@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import lpStyles from '../landing/LandingPage.module.css'
 import AuthBox from '../../components/auth-box/AuthBox'
-// import QuestionBox from '../../components/questionnaire-box/QuestionBox';
-// import ResultBox from '../../components/results-box/ResultBox'
+import QuestionBox from '../../components/questionnaire-box/QuestionBox';
+import ResultBox from '../../components/results-box/ResultBox'
+import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 
 const LandingPage = (props) => {
   const [userLocation, setUserLocation] = useState({ lat: null, lng: null})
@@ -25,19 +26,34 @@ const LandingPage = (props) => {
 
       setUserLocation({ lat: crd.latitude, lng: crd.longitude })
     }
-    
     const error = err => {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-
     navigator.geolocation.getCurrentPosition(success, error, options);
-    console.log(userLocation)
   }, [])
 
   return (
-    <div className={lpStyles.container}>
-      <AuthBox />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/results">
+        <div className={lpStyles.container}>
+          <ResultBox />
+        </div>
+        </Route>
+        <Route path="/login">
+        <div className={lpStyles.container}>
+          <AuthBox />
+        </div>
+        </Route>
+        <Route path="/questions">
+        <div className={lpStyles.container}>
+          <QuestionBox />
+        </div>
+        </Route>
+      </Switch>
+    </Router>
+    console.log(userLocation)
+  }, [])
   )
 }
 
