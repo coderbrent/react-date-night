@@ -17,8 +17,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
+  next();
+});
+
 // DB connection and other bits (yeah yeah it's mongo give me a break)
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/date-night`, {
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:${process.env.MONGO}/date-night`, {
   useUnifiedTopology: true, useNewUrlParser: true
 });
 
@@ -50,12 +55,14 @@ app.post('/login', async (req, res) => {
     const user = await UserProfile.findOne({
       username: req.body.username
     }).exec();
+
     if (!user) {
-      return res.status(400).send({ message: "That username does not exist." });
+      return res.status(400).send("That username does not exist.");
     }
     if (!bcrypt.compareSync(req.body.password, user.password)) {
       return res.status(400).send({ message: "That password is incorrect." });
     }
+
     let token = jwt.sign({ username: user.username }, "its a secret", {
       expiresIn: 129600
     });
@@ -64,11 +71,10 @@ app.post('/login', async (req, res) => {
       err: null,
       token
     });
-    alert(`You are now logged in as username: ${user.username}`);
+    console.log(`You are now logged in as username: ${user.username}`);
   } catch (error) {
     res.status(500).send(error);
   }
-  
 })
 
 app.post('/signup', async (req, res) => {
@@ -79,11 +85,13 @@ app.post('/signup', async (req, res) => {
         password: req.body.password,
         email: req.body.email
       });
-    
+
       const result = await newUser.save();
         res.send(result);
-  } catch (error) {
-      res.status(500).send(error);
+        console.log(result)
+  } 
+  catch (error) {
+    res.status(500).send(error);
   }
 })
 
