@@ -31,14 +31,13 @@ class AuthHelpers extends React.Component {
         return true;
       } else return false;
     } catch (err) {
-      console.log("expired check failed! Line 42: AuthService.js");
+      console.log("Expired check failed!");
       return false;
     }
   };
 
   setToken = idToken => {
     localStorage.setItem("id_token", idToken);
-    console.log("id token has been set");
   };
 
   getToken = () => {

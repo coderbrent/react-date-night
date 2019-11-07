@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import lpStyles from '../landing/LandingPage.module.css'
-import AuthBox from '../../components/auth-box/AuthBox'
+import LoginBox from '../../components/auth/login-box/LoginBox'
 import QuestionBox from '../../components/questionnaire-box/QuestionBox';
 import ResultBox from '../../components/results-box/ResultBox'
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom'
 
 const LandingPage = (props) => {
   const [userLocation, setUserLocation] = useState({ lat: null, lng: null})
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
 
@@ -42,7 +43,7 @@ const LandingPage = (props) => {
         </Route>
         <Route path="/login">
         <div className={lpStyles.container}>
-          <AuthBox />
+          <LoginBox />
         </div>
         </Route>
         <Route path="/questions">
@@ -52,8 +53,6 @@ const LandingPage = (props) => {
         </Route>
       </Switch>
     </Router>
-    console.log(userLocation)
-  }, [])
   )
 }
 

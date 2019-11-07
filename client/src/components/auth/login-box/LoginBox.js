@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import abStyles from '../auth-box/AuthBox.module.css'
-import AuthHelpers from '../auth-box/AuthHelpers';
+import abStyles from '../AuthBox.module.css'
+import AuthHelpers from '../AuthHelpers'
+import SignUpBox from '../signup-box/SignUpBox'
 
-const AuthBox = () => {
-  const Auth = new AuthHelpers();
-
+const LoginBox = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [authBoxType, setAuthBoxType] = useState(false);
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  const Auth = new AuthHelpers();
 
   const doLogin = () => {
     Auth.login(username, password)
       .then(response => {
-        if(response.status === 400) {
+        if(response.status === 403) {
           return alert(`Those credentials don't exist`)
         } else {
           setLoggedIn(true)
@@ -23,9 +25,13 @@ const AuthBox = () => {
       })
   }
 
+  const toggleBox = () => {
+    !authBoxType ? setAuthBoxType(true) : setAuthBoxType(false);
+  }
+  
   return (
     <>
-      <div className={abStyles.box}>
+     { !authBoxType ? <div className={abStyles.box}>
         <div className={abStyles.header}>
           Login
         </div>
@@ -50,11 +56,21 @@ const AuthBox = () => {
             />
           </label>
         </div>
-          <button onClick={doLogin} className={abStyles.loginButton}>log in</button>
-          <button className={abStyles.signupButton}>sign up</button>
-      </div>
+        <button 
+          onClick={doLogin} 
+          className={abStyles.loginButton}
+        >
+          log in
+        </button>
+        <button 
+          onClick={toggleBox} 
+          className={abStyles.signupButton}
+        >
+          sign up
+        </button>
+      </div> : <SignUpBox /> }
     </>
-  )
+  ) 
 }
 
-export default AuthBox;
+export default LoginBox;

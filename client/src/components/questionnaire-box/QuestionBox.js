@@ -4,6 +4,7 @@ import GoogleAutoComplete from '../google-autocomplete/GoogleAutoComplete';
 
 const QuestionBox = () => {
  const [address, setAddress] = useState({ address: null })
+ 
   return (
     <>
       <div className={qbStyles.box}>
