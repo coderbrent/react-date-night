@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// DB connection and other bits (yeah yeah it's mongo give me a break)
+// DB connection and other items
 mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:${process.env.MONGO}/date-night`, {
   useUnifiedTopology: true, useNewUrlParser: true
 });
@@ -39,6 +39,7 @@ const jwtMW = exjwt({
   secret: `its a secret`
 });
 
+//routes (the yelp one was just futzing around to get a handle on the api)
 app.get('/yelp/restaurants/:foodType/:lat/:lng', (req, res) => {
   axios({
     url: `https://api.yelp.com/v3/businesses/search?term=${req.params.foodType}&latitude=${req.params.lat}&longitude=${req.params.lng}`,
