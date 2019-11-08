@@ -31,31 +31,27 @@ const LoginBox = () => {
   
   return (
     <>
-     { !authBoxType ? <div className={abStyles.box}>
+     { !authBoxType ? <div className={abStyles.container}><div className={abStyles.box}>
         <div className={abStyles.header}>
           Login
         </div>
-        <div className={abStyles.row}>
           <label>
-            Username:
+            username:
             <input 
               className={abStyles.userInput} 
               name="username"
               onChange={e => setUsername(e.target.value)}
             />
           </label>
-        </div>
-        <div className={abStyles.row}>
           <label>
-            Password:
+            password:
             <input 
-              className={abStyles.passInput}
+              className={abStyles.userInput}
               name="password"
               type="password"
               onChange={e => setPassword(e.target.value)}
             />
           </label>
-        </div>
         <button 
           onClick={doLogin} 
           className={abStyles.loginButton}
@@ -77,7 +73,7 @@ const LoginBox = () => {
             </button>
           </small>
         </div>
-      </div> : <SignUpBox /> }
+      </div></div> : <SignUpBox /> }
     </>
   ) 
 }

@@ -29,7 +29,7 @@ const App = () => {
    <Router>
     <Switch>
       <Route path="/login">
-        <AuthPage component={LoginBox} />
+        <AuthPage />
       </Route>
       <Route path="/main">
         <MainPage />
