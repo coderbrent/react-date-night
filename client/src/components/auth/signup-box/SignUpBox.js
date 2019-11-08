@@ -51,11 +51,10 @@ return (
     <div className={abStyles.box}>
       <div className={abStyles.header}>
         Sign Up Here
-        <ReactSVG src="../../../icons/back-arrow.svg" />
+        {/* <ReactSVG src="../../../icons/back-arrow.svg" /> */}
       </div>
-      <div className={abStyles.row}>
         <label>
-          Username:
+          username:
           <input 
             className={abStyles.userInput}
             required={true}
@@ -63,33 +62,28 @@ return (
             onChange={e => setUsername(e.target.value)}
           />
         </label>
-      </div>
-      <div className={abStyles.row}>
         <label>
-          Password:
+          password:
           <input
             required={true}
-            className={abStyles.passInput}
+            className={abStyles.userInput}
             name="password"
             type="password"
             onChange={e => setPassword(e.target.value)}
           />
         </label>
-      </div>
-      <div className={abStyles.row}>
         <label>
-          E-Mail:
+          e-mail:
           <input 
-            className={abStyles.passInput}
+            className={abStyles.userInput}
             required={true}
             name="email"
             type="email"
             onChange={e => setEmail(e.target.value)}
           />
         </label>
-      </div>
-      <button style={{ color: '#444'}} onClick={toggleBox}>go back</button>
       <button onClick={doSignUp} className={abStyles.signupButton}>sign up</button>
+      <button style={{ color: '#444'}} onClick={toggleBox}>go back</button>
     </div>
      : <LoginBox /> }
    </>
