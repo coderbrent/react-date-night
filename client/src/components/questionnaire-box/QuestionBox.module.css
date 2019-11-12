@@ -59,3 +59,12 @@ label {
   background-position: right center;
   background-repeat: no-repeat;
 }
+
+.selectBox {
+  font-family: sans-serif;
+  font-size: 1em;
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  color: white;
+}

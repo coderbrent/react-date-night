@@ -2,22 +2,30 @@ import React, { useState, useEffect } from 'react'
 import abStyles from '../AuthBox.module.css'
 import AuthHelpers from '../AuthHelpers'
 import SignUpBox from '../signup-box/SignUpBox'
+import { useHistory } from 'react-router-dom'
 
 const LoginBox = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [authBoxType, setAuthBoxType] = useState(false);
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  let history = useHistory();
 
   const Auth = new AuthHelpers();
 
+  const goToMain = () => {
+    history.push('/main')
+  }
+
   const doLogin = () => {
-    Auth.login(username, password)
+    Auth.login(email, password)
       .then(response => {
         if(response.status === 403) {
           return alert(`Those credentials don't exist`)
         } else {
           setLoggedIn(true)
+          goToMain();
         }
       })
       .catch(err => {
@@ -36,11 +44,11 @@ const LoginBox = () => {
           Login
         </div>
           <label>
-            username:
+            email:
             <input 
               className={abStyles.userInput} 
-              name="username"
-              onChange={e => setUsername(e.target.value)}
+              name="email"
+              onChange={e => setEmail(e.target.value)}
             />
           </label>
           <label>

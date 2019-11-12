@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import QuestionBox from '../../components/questionnaire-box/QuestionBox';
-import apStyles from '../auth/AuthPage.module.css'
 
 const MainPage = (props) => {
   const [userLocation, setUserLocation] = useState({ lat: null, lng: null})

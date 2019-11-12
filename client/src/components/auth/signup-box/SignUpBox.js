@@ -3,12 +3,11 @@ import abStyles from '../AuthBox.module.css'
 import AuthHelpers from '../AuthHelpers'
 import LoginBox from '../login-box/LoginBox'
 import axios from 'axios'
-import ReactSVG from 'react-svg'
+import { useHistory } from 'react-router-dom'
 
 const SignUpBox = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [authBoxType, setAuthBoxType] = useState(false);
-  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 
@@ -18,9 +17,8 @@ const SignUpBox = () => {
     event.preventDefault();
   
     axios.post(`/signup`, {
-      username: username,
+      email: email,
       password: password,
-      email: email
       })
       .then(res => { 
         if(res.data) {
@@ -50,16 +48,16 @@ return (
     { !authBoxType ? 
     <div className={abStyles.box}>
       <div className={abStyles.header}>
-        Sign Up Here
-        {/* <ReactSVG src="../../../icons/back-arrow.svg" /> */}
+        Sign Up
       </div>
-        <label>
-          username:
+      <label>
+          e-mail:
           <input 
             className={abStyles.userInput}
             required={true}
-            name="username"
-            onChange={e => setUsername(e.target.value)}
+            name="email"
+            type="email"
+            onChange={e => setEmail(e.target.value)}
           />
         </label>
         <label>
@@ -70,16 +68,6 @@ return (
             name="password"
             type="password"
             onChange={e => setPassword(e.target.value)}
-          />
-        </label>
-        <label>
-          e-mail:
-          <input 
-            className={abStyles.userInput}
-            required={true}
-            name="email"
-            type="email"
-            onChange={e => setEmail(e.target.value)}
           />
         </label>
       <button onClick={doSignUp} className={abStyles.signupButton}>sign up</button>

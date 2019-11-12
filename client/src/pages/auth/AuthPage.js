@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import LoginBox from '../../components/auth/login-box/LoginBox'
-import SignUpBox from '../../components/auth/signup-box/SignUpBox'
 import apStyles from '../auth/AuthPage.module.css'
 
 const AuthPage = (props) => {

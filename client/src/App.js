@@ -3,7 +3,7 @@ import AuthPage from './pages/auth/AuthPage'
 import MainPage from './pages/main/MainPage'
 import AuthHelpers from '../src/components/auth/AuthHelpers'
 import LoginBox from '../src/components/auth/login-box/LoginBox'
-import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Redirect, BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(null)
@@ -21,7 +21,6 @@ const App = () => {
   const logout = () => {
     Auth.logout();
       setIsLoggedIn(false);
-      return <Redirect to="/login" />
   }
 
   return (
